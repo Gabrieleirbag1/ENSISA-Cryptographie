@@ -1,3 +1,4 @@
+#EXERCICE 6
 from random import randint
 
 def power_mod(base: int, exp: int, mod: int) -> int:

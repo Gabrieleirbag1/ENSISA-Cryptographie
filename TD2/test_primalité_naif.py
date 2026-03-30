@@ -1,3 +1,4 @@
+#EXERCICE 4
 def is_prime(n):
     """Test de primalité naïf."""
     if n <= 1:
