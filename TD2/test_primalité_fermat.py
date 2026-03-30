@@ -25,6 +25,15 @@ def fermat_test(n: int, k: int = 5) -> bool:
             return False  # n est composé
     return True  # n est probablement premier
 
+def measure_execution_time(func, n, k=5):
+    """Mesure le temps d'exécution de la fonction func pour un nombre n et k itérations."""
+    import time
+    start_time = time.time()
+    result = func(n, k)
+    end_time = time.time()
+    print(f"Temps d'exécution pour n={n}, k={k}: {end_time - start_time:.6f} secondes")
+    return result
+
 # Test du code
 if __name__ == "__main__":
     test_numbers = [2, 3, 4, 5, 15, 17, 19, 20, 23, 25]
@@ -33,3 +42,6 @@ if __name__ == "__main__":
             print(f"{num} est probablement premier.")
         else:
             print(f"{num} est composé.")
+    # Mesure du temps d'exécution pour un nombre plus grand
+    measure_execution_time(fermat_test, 10**6 + 3, k=10)  # Test pour un nombre premier de grande taille
+    measure_execution_time(fermat_test, 10**6 + 4, k=10)  # Test pour un nombre composé de grande taille
