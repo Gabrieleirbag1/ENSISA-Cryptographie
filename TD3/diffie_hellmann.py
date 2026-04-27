@@ -42,6 +42,24 @@ def decrypt(p, g, A, B, c):
     if K1 == K2:
         K = K1
         print(f"Shared secret key successfully computed: K = {K}")
+        decrypted_message = decrypt_vigenere(c, str(K))
+        print(f"Decrypted message: {decrypted_message}")
+    else:
+        print("Error: Shared secret keys do not match.")
+
+def decrypt_vigenere(c, key):
+    # make key to string A = 0, B = 1, ..., Z = 25
+    key = ''.join([chr((ord(char) - ord('0')) % 26 + ord('A')) for char in key])
+    decrypted_message = ""
+    key_length = len(key)
+    for i, char in enumerate(c):
+        if char.isalpha():
+            shift = ord(key[i % key_length]) - ord('A')
+            decrypted_char = chr((ord(char) - shift - ord('A')) % 26 + ord('A'))
+            decrypted_message += decrypted_char
+        else:
+            decrypted_message += char
+    return decrypted_message
 
 if __name__ == "__main__":
     main()
